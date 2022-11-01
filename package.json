@@ -7,6 +7,7 @@
     "test": "jest",
     "test:watch": "yarn test --watch",
     "test:staged": "yarn test --findRelatedTests",
+    "test:coverage": "yarn test --coverage",
     "dev": "nodemon --watch './src/' --exec 'ts-node ./src/index.ts' -e ts",
     "prepare": "husky install"
   },
@@ -53,7 +54,8 @@
     "hooks": {
       "pre-commit": "lint-staged",
       "commit-msg": "yarn commitlint --edit $1",
-      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
+      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true",
+      "pre-push": "yarn test:coverage"
     }
   },
   "config": {
