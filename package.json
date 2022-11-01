@@ -4,11 +4,13 @@
   "description": "Hackathon-FCamara-Squad-2/back-end",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "dev": "nodemon --watch './src/' --exec 'ts-node ./src/index.ts' -e ts",
     "test": "jest",
     "test:watch": "yarn test --watch",
     "test:staged": "yarn test --findRelatedTests",
     "test:coverage": "yarn test --coverage",
-    "dev": "nodemon --watch './src/' --exec 'ts-node ./src/index.ts' -e ts",
     "prepare": "husky install"
   },
   "repository": {
