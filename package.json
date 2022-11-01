@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Hackathon-FCamara-Squad-2/back-end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hackathon-FCamara-Squad-2/backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hackathon-FCamara-Squad-2/backend/issues"
+  },
+  "homepage": "https://github.com/Hackathon-FCamara-Squad-2/backend#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.8",
+    "typescript": "^4.8.4"
+  }
+}
