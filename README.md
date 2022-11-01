@@ -8,7 +8,7 @@
 
 # Orange Evolution
 
-Back end da plataforma da organge evolution, desenvolvida durante o hackathon pelo squad 2
+Back end da plataforma da orange evolution, desenvolvida durante o hackathon pelo squad 2
 
 ## Getting started
 
