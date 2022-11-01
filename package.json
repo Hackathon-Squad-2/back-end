@@ -59,8 +59,8 @@
   },
   "lint-staged": {
     "./src/**/*.ts": [
-      "prettier --check",
       "prettier --write",
+      "prettier --check",
       "eslint --fix",
       "yarn test:staged"
     ]
