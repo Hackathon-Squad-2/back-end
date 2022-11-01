@@ -1,0 +1,54 @@
+{
+"openapi": "3.0.0",
+  "info": {
+    "title": "Orange Evolution - Hackathon Squad 2",
+    "description": "Documentação da API desenvolvida durante o Hackathon da FCamara pelo Squad 2",
+    "version": "1.0.0",
+    "contact": {
+      "email": "contact@garoze.com"
+    }
+  },
+  "paths": {
+    "/api/users": {
+      "post": {
+        "tags": ["users"],
+        "summary": "Create a user",
+        "description": "Create a user and add it to the database",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+
+                },
+                "example": {
+                  "name": "user",
+                  "email": "user@mail.com",
+                  "password": "12345"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created"
+          },
+          "500": {
+            "description": "User already exists"
+          }
+        }
+      }
+    }
+  }
+}
