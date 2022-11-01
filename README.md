@@ -15,6 +15,7 @@ Back end da plataforma da orange evolution, desenvolvida durante o hackathon pel
 ```shell
 git clone https://github.com/Hackathon-Squad-2/back-end.git 
 cd back-end
+yarn 
 yarn start
 ```
 A sequencia de comandos acima, clona o respositorio e instala as dependencias necessarias para rodar o projeto
@@ -25,5 +26,6 @@ A sequencia de comandos acima, clona o respositorio e instala as dependencias ne
 git clone https://github.com/Hackathon-Squad-2/back-end.git 
 cd back-end
 git checkout develop
+yarn
 yarn dev 
 ```
