@@ -24,5 +24,6 @@ A sequencia de comandos acima, clona o respositorio e instala as dependencias ne
 ```shell
 git clone https://github.com/Hackathon-Squad-2/back-end.git 
 cd back-end
+git checkout develop
 yarn dev 
 ```
