@@ -11,6 +11,8 @@
     "test:watch": "yarn test --watch",
     "test:staged": "yarn test --findRelatedTests",
     "test:coverage": "yarn test --coverage",
+    "prisma:format": "yarn prisma format",
+    "db:push": "yarn prisma db push",
     "prepare": "husky install"
   },
   "repository": {
