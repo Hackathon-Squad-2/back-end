@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node ./dist/shared/infra/http/server.ts",
-    "dev": "nodemon --watch './src/' --exec 'ts-node ./src/shared/infra/http/server.ts' -e ts",
+    "dev": "nodemon --watch \"./src/\" --exec \"ts-node ./src/shared/infra/http/server.ts\" -e ts",
     "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
     "test:staged": "yarn test --findRelatedTests",
