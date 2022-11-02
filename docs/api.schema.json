@@ -119,7 +119,7 @@
       "get": {
         "tags": ["courses"],
         "summary": "See all user courses",
-        "description": "Return an list contain the users courses information",
+        "description": "Return an list contain the user's courses information",
         "security": [
           { "bearerAuth": [] }
         ],
@@ -129,9 +129,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Trail"
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Trail"
+                      }
+                    }
                   }
                 }
               }
@@ -139,6 +144,59 @@
           },
           "401": {
             "$ref": "#/components/responses/E401"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/users/me/courses/{trailId}": {
+      "get": {
+        "tags": ["courses"],
+        "summary": "See an user courses",
+        "description": "Return an list contain an user courses information",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Trail"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/E500"
