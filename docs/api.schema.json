@@ -9,11 +9,11 @@
     }
   },
   "paths": {
-    "/api/users": {
+    "/api/users/auth/register": {
       "post": {
-        "tags": ["users"],
-        "summary": "Create a user",
-        "description": "Create a user and add it to the database",
+        "tags": ["auth"],
+        "summary": "Register a user",
+        "description": "Register a new user to the plataform",
         "requestBody": {
           "content": {
             "application/json": {
@@ -49,6 +49,146 @@
           }
         }
       }
+    },
+    "/api/users/auth/login": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "Login into the plataform",
+        "description": "Allow a user to login into the plataform",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+
+                },
+                "example": {
+                  "email": "user@mail.com",
+                  "password": "12345"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "E-mail or password invalid"
+          }
+        }
+      }
+    },
+    "/api/users/me": {
+      "get": {
+        "tags": ["profile"],
+        "summary": "Sees a user profile",
+        "description": "Returns an object that contain all the information about an user",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "responses": {
+          "200": {
+            "description": "User information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/users/me/courses": {
+      "get": {
+
+      }
+    }
+  },
+  "definitions": {
+    "Date": {
+      "type": "string",
+      "example": "2022-11-02T23:00:49.578Z"
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "johndoe@mail.com"
+        },
+        "createAt": {
+          "$ref": "#/definitions/Date"
+        }
+      }
+    },
+    "E401": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "example": "Unauthorized"
+        }
+      }
+    },
+    "E500": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "example": "Internal error"
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "responses": {
+      "E401": {
+        "description": "Unauthorized request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/E401"
+            }
+          }
+        }
+      },
+      "E500": {
+        "description": "Internal error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/E500"
+            }
+          }
+        }
+      }
     }
   }
 }
+
