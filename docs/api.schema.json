@@ -491,6 +491,43 @@
           }
         }
       }
+    },
+    "/api/admin/trails": {
+      "post": {
+        "tags": ["admin"],
+        "summary": "Create a trail",
+        "description": "Allow the admin to create a new trail",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Trail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Trail"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
     }
   },
   "definitions": {
