@@ -3,13 +3,13 @@ import 'express-async-errors';
 import express, { NextFunction, Request, Response } from 'express';
 import swaggerUI from 'swagger-ui-express';
 
+import { AppError } from '../../errors/AppError';
 import { ConnectDB } from '../../../database';
 
+import { errors } from 'celebrate';
 import { router } from './routes';
 
 import apiSchema from '../../../../docs/api.schema.json';
-import { AppError } from '../../errors/AppError';
-import { errors } from 'celebrate';
 
 export const app = express();
 
@@ -24,7 +24,6 @@ ConnectDB().then(() => {
     (err: Error, _request: Request, response: Response, next: NextFunction) => {
       if (err instanceof AppError) {
         return response.status(err.statusCode).json({
-          code: err.statusCode,
           message: err.message,
         });
       }

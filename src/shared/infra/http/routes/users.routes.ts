@@ -9,4 +9,8 @@ export const usersRoutes = Router();
 
 const createUserController = new CreateUserController();
 
-usersRoutes.post('/', createUserValidation, createUserController.handle);
+usersRoutes.post(
+  '/auth/register',
+  createUserValidation,
+  createUserController.handle
+);
