@@ -203,12 +203,333 @@
           }
         }
       }
+    },
+    "/api/users/me/courses/sign": {
+      "post": {
+        "tags": ["courses"],
+        "summary": "Register courses to an user",
+        "description": "Create an relation with trails ids and an user",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "trailIdList": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/users/me/courses/unsign/{trailId}": {
+      "delete": {
+        "tags": ["courses"],
+        "summary": "Remove a course from an user",
+        "description": "Remove the relation between and trail id and a user",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/users/me/courses/{trailId}/progress": {
+      "get": {
+        "tags": ["progress"],
+        "summary": "Get an user progress for a certain trail id",
+        "description": "Return the user progress for a certain trail id as a percent number",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "progress": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/users/me/courses/{trailId}/progress/{contentId}": {
+      "get": {
+        "tags": ["progress"],
+        "summary": "Get an user progress for a certain trail and its content",
+        "description": "Return the user progress for a certain trail given an content id as a percent number",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "in": "path",
+            "description": "ID for a specific content of an trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "progress": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["progress"],
+        "summary": "Updates the user progress",
+        "description": "Updates the user progress on a certain content of an trail",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "in": "path",
+            "description": "ID for a specific content of an trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": ["started", "going", "finished"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success" 
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
     }
   },
   "definitions": {
     "Date": {
       "type": "string",
       "example": "2022-11-02T23:00:49.578Z"
+    },
+    "Content": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "artigo", 
+            "apostila", 
+            "curso", 
+            "desafio",
+            "ferramenta", 
+            "glossário", 
+            "live", 
+            "livro", 
+            "podcast",
+            "playlist", 
+            "video" 
+          ]
+        },
+        "creator": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
     },
     "Trail": {
       "type": "object",
