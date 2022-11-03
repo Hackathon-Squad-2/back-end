@@ -492,6 +492,123 @@
         }
       }
     },
+    "/api/trails/{trailId}/content": {
+      "get": {
+        "tags": ["content"],
+        "summary": "Sees a trail content without links",
+        "description": "Return a list with all trail contents without links",
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/ContentFiltred"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/trails/{trailId}/content/{contentId}": {
+      "get": {
+        "tags": ["content"],
+        "summary": "",
+        "description": "",
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "in": "path",
+            "description": "ID for a specific content of an trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ContentFiltred"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
     "/api/admin/trails": {
       "post": {
         "tags": ["admin"],
@@ -626,6 +743,36 @@
     "Date": {
       "type": "string",
       "example": "2022-11-02T23:00:49.578Z"
+    },
+    "ContentFiltred": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "artigo", 
+            "apostila", 
+            "curso", 
+            "desafio",
+            "ferramenta", 
+            "glossário", 
+            "live", 
+            "livro", 
+            "podcast",
+            "playlist", 
+            "video" 
+          ]
+        },
+        "creator": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer"
+        }
+      }
     },
     "Content": {
       "type": "object",
