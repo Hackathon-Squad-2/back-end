@@ -298,12 +298,103 @@
           }
         }
       }
+    },
+    "/api/users/me/courses/{trailId}/progress": {
+      "get": {
+        "tags": ["progress"],
+        "summary": "Get an user progress for a certain trail id",
+        "description": "Return the user progress for a certain trail id as a percent number",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "progress": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
     }
   },
   "definitions": {
     "Date": {
       "type": "string",
       "example": "2022-11-02T23:00:49.578Z"
+    },
+    "Content": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "artigo", 
+            "apostila", 
+            "curso", 
+            "desafio",
+            "ferramenta", 
+            "glossário", 
+            "live", 
+            "livro", 
+            "podcast",
+            "playlist", 
+            "video" 
+          ]
+        },
+        "creator": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
     },
     "Trail": {
       "type": "object",
