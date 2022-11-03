@@ -29,3 +29,18 @@ git checkout develop
 yarn
 yarn dev 
 ```
+
+## Documentation
+
+```shell
+git clone https://github.com/Hackathon-Squad-2/back-end.git 
+cd back-end
+git checkout develop
+yarn
+yarn dev 
+```
+depois acesse a url 
+```
+http://localhost:3000/api/docs
+```
+
