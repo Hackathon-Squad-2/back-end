@@ -553,8 +553,8 @@
     "/api/trails/{trailId}/content/{contentId}": {
       "get": {
         "tags": ["content"],
-        "summary": "",
-        "description": "",
+        "summary": "Sees the content of a trail",
+        "description": "Returns a certain content by id from a certain trail by id",
         "parameters": [
           {
             "name": "trailId",
@@ -705,6 +705,186 @@
             "name": "trailId",
             "in": "path",
             "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/admin/trails/{trailId}/content": {
+      "post": {
+        "tags": ["admin"],
+        "summary": "Add a content to a trail",
+        "description": "Allow the admin to add a content to a trail by id",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Content"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Content"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/admin/trails/{trailId}/content/{contentId}": {
+      "patch": {
+        "tags": ["admin"],
+        "summary": "Sees the content of a trail",
+        "description": "Returns a certain content by id from a certain trail by id",
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "in": "path",
+            "description": "ID for a specific content of an trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Content"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Content"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["admin"],
+        "summary": "Delete a content from a trail",
+        "description": "Remove a content by id from a certain trail by id",
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "in": "path",
+            "description": "ID for a specific content of an trail",
             "required": true,
             "schema": {
               "type": "string"
