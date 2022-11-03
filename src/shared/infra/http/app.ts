@@ -9,6 +9,7 @@ import { router } from './routes';
 
 import apiSchema from '../../../../docs/api.schema.json';
 import { AppError } from '../../errors/AppError';
+import { errors } from 'celebrate';
 
 export const app = express();
 
@@ -17,6 +18,7 @@ ConnectDB().then(() => {
   app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(apiSchema));
 
   app.use(router);
+  app.use(errors());
 
   app.use(
     (err: Error, _request: Request, response: Response, next: NextFunction) => {
