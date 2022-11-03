@@ -207,8 +207,8 @@
     "/api/users/me/courses/sign": {
       "post": {
         "tags": ["courses"],
-        "summary": "",
-        "description": "",
+        "summary": "Register courses to an user",
+        "description": "Create an relation with trails ids and an user",
         "security": [
           { "bearerAuth": [] }
         ],
@@ -246,6 +246,52 @@
           },
           "401": {
             "$ref": "#/components/responses/E401"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/users/me/courses/unsign/{trailId}": {
+      "delete": {
+        "tags": ["courses"],
+        "summary": "Remove a course from an user",
+        "description": "Remove the relation between and trail id and a user",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "description": "ID for a specific trail",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "example": "Course not found"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/E500"
