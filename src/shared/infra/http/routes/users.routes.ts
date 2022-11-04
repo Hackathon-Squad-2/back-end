@@ -10,10 +10,15 @@ import {
   RegisterUserController,
 } from '../../../../modules/users/useCases/registerUser';
 
+import { UserProfileController } from '../../../../modules/users/useCases/userProfile';
+
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticate';
+
 export const usersRoutes = Router();
 
 const loginUserController = new LoginUserController();
 const registerUserController = new RegisterUserController();
+const userProfileController = new UserProfileController();
 
 usersRoutes.post(
   '/auth/register',
@@ -26,3 +31,5 @@ usersRoutes.post(
   loginUserValidation,
   loginUserController.handle
 );
+
+usersRoutes.get('/me', ensureAuthenticated, userProfileController.handle);
