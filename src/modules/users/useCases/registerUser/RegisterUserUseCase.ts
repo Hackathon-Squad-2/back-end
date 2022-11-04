@@ -30,8 +30,7 @@ export class RegisterUserUseCase {
       },
     });
 
-    const user = Object.assign(newUser);
-    delete user.password;
+    const { password: _, ...user } = newUser;
 
     return user;
   }

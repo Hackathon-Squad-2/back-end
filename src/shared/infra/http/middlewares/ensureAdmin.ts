@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 import { prisma } from '../../../../database';
 import { AppError } from '../../../errors/AppError';
