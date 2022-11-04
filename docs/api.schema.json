@@ -805,6 +805,9 @@
         "tags": ["admin"],
         "summary": "Sees the content of a trail",
         "description": "Returns a certain content by id from a certain trail by id",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "parameters": [
           {
             "name": "trailId",
@@ -871,6 +874,9 @@
         "tags": ["admin"],
         "summary": "Delete a content from a trail",
         "description": "Remove a content by id from a certain trail by id",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "parameters": [
           {
             "name": "trailId",
