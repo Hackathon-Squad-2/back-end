@@ -1,4 +1,5 @@
 import { User } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
 import { prisma } from '../../../../database';
 import { AppError } from '../../../../shared/errors/AppError';
@@ -19,11 +20,13 @@ export class RegisterUserUseCase {
       throw new AppError('User already exists', 400);
     }
 
+    const hashPassword = await bcrypt.hash(password, 10);
+
     const newUser = await prisma.user.create({
       data: {
         name,
         email,
-        password,
+        password: hashPassword,
       },
     });
 
