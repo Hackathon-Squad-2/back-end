@@ -1,16 +1,28 @@
 import { Router } from 'express';
 
 import {
-  createUserValidation,
-  CreateUserController,
-} from '../../../../modules/users/useCases/createUser';
+  LoginUserController,
+  loginUserValidation,
+} from '../../../../modules/users/useCases/loginUser';
+
+import {
+  registerUserValidation,
+  RegisterUserController,
+} from '../../../../modules/users/useCases/registerUser';
 
 export const usersRoutes = Router();
 
-const createUserController = new CreateUserController();
+const loginUserController = new LoginUserController();
+const registerUserController = new RegisterUserController();
 
 usersRoutes.post(
   '/auth/register',
-  createUserValidation,
-  createUserController.handle
+  registerUserValidation,
+  registerUserController.handle
+);
+
+usersRoutes.post(
+  '/auth/login',
+  loginUserValidation,
+  loginUserController.handle
 );
