@@ -11,11 +11,48 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(uuid())
+  id       String  @id @default(uuid())
   name     String
-  email    String   @unique
+  email    String  @unique
   password String
   isAdmin  Boolean @default(false)
 
   createdAt DateTime @default(now())
+}
+
+enum ContentType {
+  artigo
+  live
+  video
+  glossario
+  apostila
+  livro
+  curso
+  podcast
+  playlist
+  ferramenta
+  desafio
+}
+
+model Content {
+  id       String      @id @default(uuid())
+  title    String
+  type     ContentType
+  creator  String
+  duration Int?
+  url      String
+
+  trailId  String
+  trail    Trail       @relation(fields: [trailId], references: [id])
+}
+
+model Trail {
+  id          String @id @default(uuid())
+  title       String @unique
+  banner      String
+  description String
+  creator     String
+  duration    Int
+
+  content Content[]
 }
