@@ -10,12 +10,83 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Course {
+  userId  String
+  trailId String
+
+  user    User   @relation(fields: [userId], references: [id])
+  trail   Trail  @relation(fields: [trailId], references: [id])
+
+  @@unique([userId, trailId])
+}
+
 model User {
-  id       String   @id @default(uuid())
+  id       String  @id @default(uuid())
   name     String
-  email    String   @unique
+  email    String  @unique
   password String
   isAdmin  Boolean @default(false)
 
+  course   Course[]
+  progress Progress[]
+
   createdAt DateTime @default(now())
+}
+
+enum ContentType {
+  artigo
+  live
+  video
+  glossario
+  apostila
+  livro
+  curso
+  podcast
+  playlist
+  ferramenta
+  desafio
+}
+
+enum Status {
+  started
+  going
+  finished
+}
+
+model Progress {
+  status Status
+
+  userId    String
+  contentId String
+
+  user    User    @relation(fields: [userId], references: [id])
+  content Content @relation(fields: [contentId], references: [id])
+
+  @@unique([userId, contentId])
+}
+
+model Content {
+  id       String      @id @default(uuid())
+  title    String
+  type     ContentType
+  creator  String
+  duration Int?
+  url      String
+
+  progress Progress[]
+
+  trailId String
+  trail   Trail  @relation(fields: [trailId], references: [id])
+}
+
+model Trail {
+  id          String @id @default(uuid())
+  title       String @unique
+  banner      String
+  description String
+  creator     String
+  duration    Int
+
+  course  Course[]
+  content Content[]
 }
