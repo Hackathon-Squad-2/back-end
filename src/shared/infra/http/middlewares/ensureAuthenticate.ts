@@ -21,7 +21,7 @@ export const ensureAuthenticated = async (
   const [, token] = authHeader.split(' ');
 
   try {
-    const { id } = verify(token, process.env.JWT_PASS ?? '') as IPayload;
+    const { sub: id } = verify(token, process.env.JWT_PASS ?? '') as IPayload;
 
     request.user = { id };
 
