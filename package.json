@@ -15,6 +15,9 @@
     "db:push": "yarn prisma db push",
     "prepare": "husky install"
   },
+  "prisma": {
+    "seed": "ts-node ./src/modules/admin/seed/admin.ts" 
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hackathon-FCamara-Squad-2/backend.git"
