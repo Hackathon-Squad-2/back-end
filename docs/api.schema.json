@@ -192,7 +192,20 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/E401"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token missing"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/E500"
@@ -1098,11 +1111,11 @@
       "properties": {
         "name": {
           "type": "string",
-          "example": "John Doe"
+          "example": "user"
         },
         "email": {
           "type": "string",
-          "example": "johndoe@mail.com"
+          "example": "user@mail.com"
         },
         "createAt": {
           "$ref": "#/definitions/Date"
