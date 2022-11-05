@@ -299,7 +299,7 @@
         }
       }
     },
-    "/api/users/me/courses/sign": {
+    "/api/users/courses/sign": {
       "post": {
         "tags": ["courses"],
         "summary": "Register courses to an user",
@@ -313,7 +313,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "trailIdList": {
+                  "trailsIdList": {
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -325,7 +325,37 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -338,9 +368,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "$ref": "#/components/responses/E401"
           },
           "500": {
             "$ref": "#/components/responses/E500"

@@ -11,6 +11,6 @@ export class SignCoursesController {
 
     const count = await signCoursesUseCase.execute({ id, trailsIdList });
 
-    return response.status(200).json({ count });
+    return response.status(200).json(count);
   }
 }
