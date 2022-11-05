@@ -42,10 +42,72 @@
         },
         "responses": {
           "201": {
-            "description": "User created"
+            "description": "User created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { 
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "isAdmin": {
+                      "type": "string"
+                    },
+                    "createAt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "validation": {
+                      "type": "object",
+                      "properties": {
+                        "source": {
+                          "type": "string"
+                        },
+                        "keys": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "User already exists"
+            "$ref": "#/components/responses/E500"
           }
         }
       }
@@ -849,18 +911,7 @@
             }
           },
           "404": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "example": "Course not found"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/E401"
@@ -1050,6 +1101,41 @@
           "example": "Internal error"
         }
       }
+    },
+    "BadRequest": {
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "int",
+          "example": 400
+        },
+        "error": {
+          "type": "string",
+          "example": "Bad Request"
+        },
+        "message": {
+          "type": "string",
+          "example": "Validation failed"
+        },
+        "validation": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "example": "body"
+            },
+            "keys": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1077,6 +1163,16 @@
           "application/json": {
             "schema": {
               "$ref": "#/definitions/E500"
+            }
+          }
+        }
+      },
+      "BadRequest": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/definitions/BadRequest"
             }
           }
         }
