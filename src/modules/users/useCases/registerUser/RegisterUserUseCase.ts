@@ -17,7 +17,7 @@ export class RegisterUserUseCase {
     const userExists = await prisma.user.findFirst({ where: { email } });
 
     if (userExists) {
-      throw new AppError('User already exists', 400);
+      throw new AppError('User already exists', 409);
     }
 
     const hashPassword = await bcrypt.hash(password, 10);

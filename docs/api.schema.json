@@ -69,37 +69,18 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "statusCode": {
-                      "type": "string"
-                    },
-                    "error": {
-                      "type": "string"
-                    },
                     "message": {
-                      "type": "string"
-                    },
-                    "validation": {
-                      "type": "object",
-                      "properties": {
-                        "source": {
-                          "type": "string"
-                        },
-                        "keys": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "message": {
-                          "type": "string"
-                        }
-                      }
+                      "type": "string",
+                      "example": "User already exists"
                     }
                   }
                 }
@@ -124,16 +105,13 @@
                 "type": "object",
                 "properties": {
                   "email": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "user@mail.com"
                   },
                   "password": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "12345"
                   }
-
-                },
-                "example": {
-                  "email": "user@mail.com",
-                  "password": "12345"
                 }
               }
             }
@@ -141,10 +119,52 @@
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "description": "E-mail or password invalid"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "E-mail or password incorrect"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
           }
         }
       }
@@ -159,7 +179,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User information",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -169,7 +189,20 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/E401"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token missing"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/E500"
@@ -266,7 +299,7 @@
         }
       }
     },
-    "/api/users/me/courses/sign": {
+    "/api/users/courses/sign": {
       "post": {
         "tags": ["courses"],
         "summary": "Register courses to an user",
@@ -280,7 +313,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "trailIdList": {
+                  "trailsIdList": {
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -292,7 +325,37 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
             "content": {
               "application/json": {
                 "schema": {
@@ -306,16 +369,13 @@
               }
             }
           },
-          "401": {
-            "$ref": "#/components/responses/E401"
-          },
           "500": {
             "$ref": "#/components/responses/E500"
           }
         }
       }
     },
-    "/api/users/me/courses/unsign/{trailId}": {
+    "/api/users/courses/unsign/{trailId}": {
       "delete": {
         "tags": ["courses"],
         "summary": "Remove a course from an user",
@@ -1074,12 +1134,10 @@
       "type": "object",
       "properties": {
         "name": {
-          "type": "string",
-          "example": "John Doe"
+          "type": "string"
         },
         "email": {
-          "type": "string",
-          "example": "johndoe@mail.com"
+          "type": "string"
         },
         "createAt": {
           "$ref": "#/definitions/Date"
@@ -1148,7 +1206,7 @@
     },
     "responses": {
       "E401": {
-        "description": "Unauthorized request",
+        "description": "Unauthorized",
         "content": {
           "application/json": {
             "schema": {
