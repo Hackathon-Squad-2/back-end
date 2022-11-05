@@ -72,7 +72,7 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "409": {
-            "description": "conflict",
+            "description": "Conflict",
             "content": {
               "application/json": {
                 "schema": {
@@ -105,16 +105,13 @@
                 "type": "object",
                 "properties": {
                   "email": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "user@mail.com"
                   },
                   "password": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "12345"
                   }
-
-                },
-                "example": {
-                  "email": "user@mail.com",
-                  "password": "12345"
                 }
               }
             }
@@ -122,10 +119,55 @@
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "user"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "user@mail.com"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "description": "E-mail or password invalid"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "E-mail or password incorrect"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
           }
         }
       }
@@ -1129,7 +1171,7 @@
     },
     "responses": {
       "E401": {
-        "description": "Unauthorized request",
+        "description": "Unauthorized",
         "content": {
           "application/json": {
             "schema": {
