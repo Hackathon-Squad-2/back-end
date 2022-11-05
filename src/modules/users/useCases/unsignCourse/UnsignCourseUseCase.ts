@@ -15,6 +15,7 @@ export class UnsignCourseUseCase {
     if (!courseExists) {
       throw new AppError('Course not found', 404);
     }
+
     const course = await prisma.course.delete({
       where: {
         userId_trailId: {
