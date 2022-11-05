@@ -69,37 +69,18 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "409": {
+            "description": "conflict",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "statusCode": {
-                      "type": "string"
-                    },
-                    "error": {
-                      "type": "string"
-                    },
                     "message": {
-                      "type": "string"
-                    },
-                    "validation": {
-                      "type": "object",
-                      "properties": {
-                        "source": {
-                          "type": "string"
-                        },
-                        "keys": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "message": {
-                          "type": "string"
-                        }
-                      }
+                      "type": "string",
+                      "example": "User already exists"
                     }
                   }
                 }
