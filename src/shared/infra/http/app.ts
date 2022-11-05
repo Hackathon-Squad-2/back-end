@@ -21,7 +21,7 @@ ConnectDB().then(() => {
   app.use(express.json());
   app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(apiSchema));
 
-  app.use(router);
+  app.use('/api', router);
   app.use(errors());
 
   app.use(errorHandler);
