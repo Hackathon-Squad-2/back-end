@@ -3,10 +3,13 @@ import { Trail } from '@prisma/client';
 import { prisma } from '../../../../database';
 import { AppError } from '../../../../shared/errors/AppError';
 
-type IRequest = Trail;
+type IRequest = {
+  id: string;
+  payload: Omit<Trail, 'id'>;
+};
 
 export class EditTrailUseCase {
-  async execute({ id, ...rest }: IRequest): Promise<Trail> {
+  async execute({ id, payload }: IRequest): Promise<Trail> {
     const trail = await prisma.trail.findFirst({ where: { id } });
 
     if (!trail) {
@@ -17,7 +20,7 @@ export class EditTrailUseCase {
       where: {
         id: trail.id,
       },
-      data: { ...rest },
+      data: { ...payload },
     });
   }
 }
