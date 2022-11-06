@@ -7,14 +7,16 @@ type IRequest = Trail;
 
 export class EditTrailUseCase {
   async execute({ id, ...rest }: IRequest): Promise<Trail> {
-    const trailExists = await prisma.trail.findFirst({ where: { id } });
+    const trail = await prisma.trail.findFirst({ where: { id } });
 
-    if (!trailExists) {
+    if (!trail) {
       throw new AppError('Course not found', 404);
     }
 
     return await prisma.trail.update({
-      where: { id },
+      where: {
+        id: trail.id,
+      },
       data: { ...rest },
     });
   }
