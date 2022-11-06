@@ -836,8 +836,53 @@
               }
             }
           },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid token"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401": {
-            "$ref": "#/components/responses/E401"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "No allowed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Trail not found"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/E500"
@@ -1150,12 +1195,6 @@
         },
         "duration": {
           "type": "integer"
-        },
-        "content": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Content"
-          }
         }
       }
     },

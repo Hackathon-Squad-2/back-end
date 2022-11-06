@@ -13,7 +13,7 @@ export class EditTrailUseCase {
     const trail = await prisma.trail.findFirst({ where: { id } });
 
     if (!trail) {
-      throw new AppError('Course not found', 404);
+      throw new AppError('Trail not found', 404);
     }
 
     return await prisma.trail.update({
