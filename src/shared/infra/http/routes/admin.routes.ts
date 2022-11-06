@@ -5,6 +5,8 @@ import {
   createTrailValidation,
 } from '../../../../modules/admin/useCases/createTrail';
 
+import { DeleteTrailController } from '../../../../modules/admin/useCases/deleteTrail';
+
 import {
   EditTrailController,
   editTrailValidation,
@@ -17,6 +19,7 @@ export const adminRoutes = Router();
 
 const createTrailController = new CreateTrailController();
 const editTrailController = new EditTrailController();
+const deleteTrailController = new DeleteTrailController();
 
 adminRoutes.post(
   '/trails',
@@ -32,4 +35,11 @@ adminRoutes.patch(
   ensureAdmin,
   editTrailValidation,
   editTrailController.handle
+);
+
+adminRoutes.delete(
+  '/trails/:trailId',
+  ensureAuthenticated,
+  ensureAdmin,
+  deleteTrailController.handle
 );
