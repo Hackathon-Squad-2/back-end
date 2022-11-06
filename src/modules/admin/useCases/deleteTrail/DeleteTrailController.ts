@@ -10,6 +10,6 @@ export class DeleteTrailController {
 
     const deletedTrail = await deleteTrailUseCase.execute(trailId);
 
-    return response.status(200).json(deletedTrail);
+    return response.status(204).json(deletedTrail);
   }
 }

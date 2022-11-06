@@ -950,7 +950,7 @@
                   "type": "object",
                   "properties": {
                     "message": {
-                      "example": "Course not found"
+                      "example": "Trail not found"
                     }
                   }
                 }
