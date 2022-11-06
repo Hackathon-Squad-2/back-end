@@ -14,8 +14,8 @@ model Course {
   userId  String
   trailId String
 
-  user    User   @relation(fields: [userId], references: [id])
-  trail   Trail  @relation(fields: [trailId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+  trail Trail @relation(fields: [trailId], references: [id])
 
   @@unique([userId, trailId])
 }
@@ -78,7 +78,7 @@ model Content {
   trailId String
   trail   Trail  @relation(fields: [trailId], references: [id])
 
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
   deletedAt DateTime?
 }
 
@@ -93,7 +93,6 @@ model Trail {
   course  Course[]
   content Content[]
 
-  createdAt DateTime @default(now())
-  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  deletedAt DateTime? 
 }
-
