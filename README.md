@@ -174,7 +174,7 @@ http://localhost:3000/api/docs
 
 > **Nota**: O link acima considera que aplicação está rodando na porta padrão, caso tenha alterado mude na url.
 
-Para testar as rotas que precisam de autenticação, faça o login e adicone o token ao `Authorize`, o botão se encontra no canto superior direito logo acima da documentação das rotas. 
+Para testar as rotas que precisam de autenticação, faça o login e adicione o token ao `Authorize`, o botão se encontra no canto superior direito logo acima da documentação das rotas. 
 
 > **Nota**: Em rotas que necessitam de permissão de administrador, faça o login com os dados fornecidos no tópico acima.
 
