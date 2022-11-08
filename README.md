@@ -43,7 +43,7 @@ O objetivo desse projeto é criar o back-end da plataforma do [Orange Evolution]
   - [docker-compose](https://docs.docker.com/compose/)
 
 ## Instalação
-Verifique que o seu sistema tenha as dependencias listadas em [Requisitos](#requisitos), antes de iniciar a aplicação.
+Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#requisitos), antes de iniciar a aplicação.
 
 <br>
 
@@ -65,6 +65,11 @@ Verifique que o seu sistema tenha as dependencias listadas em [Requisitos](#requ
    ```sh
    yarn
    ```
+
+1. Copie o arquivo **.env.example** remova a extensão **.example** e preencha as informações.
+  1. Caso Esteja usando Docker.
+  1. Caso não esteja usando Docker.
+
 1. Crie um arquivo **.env** na raiz do projeto e preencha as seguintes informações:
    ```
    JWT_PASS=
