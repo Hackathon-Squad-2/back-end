@@ -14,7 +14,7 @@ Aplicação foi desenvolvida durante o Hackathon do <a href="https://digital.fca
 ## Table of Contents
 1. [General Info](#general-info)
 1. [Technologies](#technologies)
-1. [Prerequisites](#prerequisities)
+1. [Prerequisites](#prerequisites)
 1. [Installation](#installation)
 1. [Collaboration](#collaboration)
 1. [License](#license)
@@ -42,7 +42,7 @@ O objetivo desse projeto é criar o back-end da plataforma do [Orange Evolution]
   - [docker-compose](https://docs.docker.com/compose/)
 
 ## Installation
-Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#prerequisities), antes de iniciar a aplicação.
+Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#prerequisites), antes de iniciar a aplicação.
 
 <br>
 
@@ -67,6 +67,7 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
    JWT_PASS=
    DATABASE_URL=
    ```
+
 > **JWT_PASS** É resposavel pela criptografia do token de autenticação, é recomendado o uso de uma senha forte de preferencia transforme essa senha em algo como um sha1 ou md5 ou melhor.
 >
 > **DATABASE_URL** É responsavel pela conexão com o banco de dados, a string tem o seguinte formato:
@@ -74,12 +75,11 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 > "postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
 >
 > Preencha com os respectivos valores da sua conexão com o banco de dados.
->
-> **Nota**: os campos com **${}** devem ser substituidos pelo respectivo valor, como uma string exemplo:
->
-> 	"postgres://usuario:senha@localhost/hackathon"
->
-> A linha acima é apenas um **exemplo**.
+
+**Nota**: os campos com **${}** devem ser substituidos pelo respectivo valor, como por exemplo:
+```
+"postgres://usuario:senha@localhost/hackathon"
+```
 
 - Caso prefira usar **Docker** para o banco de dados, preencha o **.env** da seguinte forma:
    ```
