@@ -112,16 +112,16 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 	```sh
 	docker-compose up -d
 	```
-  1. Não se esqueça de verificar se o container subiu corretamente para isso usar os comandos 
-	 
+  * Não se esqueça de verificar se o container subiu corretamente para isso usar os comandos:
   ```sh
 	docker ps
 	```
 > O comando **docker ps** mostra todos os container rodando no momento, certifique-se que o nome escolhido em ${DB_NAME} está presente e rodando
-
-
+  ```sh
+  docker log -f ${DB_NAME} 
+  ```
 > O comando **docker logs -f <DB_NAME>** mostra os logs de um certo container, não se esqueça de substituir o <DB_NAME> pelo nome escolhido no **.env**
-> 
+
 * **Exemplo**:
   ```sh 
   docker logs -f hackathon
@@ -143,7 +143,10 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 
 > **Nota**: Por padrão a aplicação roda na porta **3000**, caso prefira outra porta adicione uma linha no **.env** passando **PORT**. 
 >
-> Exemplo: **PORT=3001**.
+* **Exemplo**: 
+```
+PORT=3001
+```
 
 Para as requisições que necessitam de permissão de administrador, certifique-se de rodar o comando:
   ```sh 
