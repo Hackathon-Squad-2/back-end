@@ -29,7 +29,7 @@ O objetivo desse projeto é criar o back-end da plataforma do [Orange Evolution]
 * [PostgreSQL](https://www.postgresql.org/docs/)
 * [Docker](https://www.docker.com/)
 
-> **Tests**: [Jest](https://jestjs.io/docs/en/getting-started) [Supertest](https://github.com/visionmedia/supertest)
+> **Tests**: [Jest](https://jestjs.io/docs/en/getting-started) | [Supertest](https://github.com/visionmedia/supertest)
 
 ## Prerequisites
 * [NodeJS](https://nodejs.org/en/): Version 16.16.0
@@ -48,7 +48,7 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 
 > Essa documentação assume que você está usando **yarn**, caso prefira usar npm, pnpm e afins ajuste os comandos.
 
-**Nota**: A aplicação foi desenvolvida com yarn, por isso recomendamos fortemente o uso do mesmo, os scripts listados no package.json todos assumem que você está possui yarn instalado em sua maquina.
+> **Nota**: A aplicação foi desenvolvida com yarn, por isso recomendamos fortemente o uso do mesmo, os scripts listados no package.json todos assumem que você possui yarn instalado em sua máquina.
 
 <br>
 
@@ -70,18 +70,23 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
    DATABASE_URL=
    ```
 
-> **JWT_PASS** É resposavel pela criptografia do token de autenticação, é recomendado o uso de uma senha forte de preferencia transforme essa senha em algo como um sha1 ou md5 ou melhor.
->
-> **DATABASE_URL** É responsavel pela conexão com o banco de dados, a string tem o seguinte formato:
->
-> "postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
->
-> Preencha com os respectivos valores da sua conexão com o banco de dados.
+- **JWT_PASS** - É responsável pela criptografia do token de autenticação, é recomendado o uso de uma senha forte de preferencia transforme essa senha em algo como um sha1 ou md5 ou melhor.  
+  ```
+  JWT_PASS=d19acb5a620f18edb2aa65a780c645d632e29df4
+  ```
+> **Nota**: O valor acima é apenas um exemplo.
 
-**Nota**: os campos com **${}** devem ser substituidos pelo respectivo valor, como por exemplo:
-```
-"postgres://usuario:senha@localhost/hackathon"
-```
+- **DATABASE_URL** - É responsável pela conexão com o banco de dados, a string tem o seguinte formato:
+  ```
+  "postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
+  ```
+> **Nota**: Preencha com os respectivos valores da sua conexão com o banco de dados.
+
+* **Exemplo**:
+  ```
+  "postgres://usuario:senha@localhost/hackathon"
+  ```
+> **Nota**: O valor acima é apenas um exemplo.
 
 - Caso prefira usar **Docker** para o banco de dados, preencha o **.env** da seguinte forma:
    ```
@@ -93,21 +98,34 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 
    DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
    ```
-Alterando os campos que iniciam com **DB** para os valores desejados, e depois rode:
+* **Exemplo**:
+  ```
+  DB_HOST=localhost
+  DB_PORT=5432
+  DB_USER=usuario
+  DB_PASS=senha
+  DB_NAME=hackathon
+
+  DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
+  ```
+* Após alterar os campos que iniciam com **DB** para os valores desejados, e depois rode:
 	```sh
 	docker-compose up -d
 	```
-Não se esqueça de verificar se o container subiu corretamente para isso usar os comandos 
-	```sh
+  1. Não se esqueça de verificar se o container subiu corretamente para isso usar os comandos 
+	 
+  ```sh
 	docker ps
-	docker logs -f <DB_NAME>
 	```
 > O comando **docker ps** mostra todos os container rodando no momento, certifique-se que o nome escolhido em ${DB_NAME} está presente e rodando
->
+
+
 > O comando **docker logs -f <DB_NAME>** mostra os logs de um certo container, não se esqueça de substituir o <DB_NAME> pelo nome escolhido no **.env**
 > 
-> **Exemplo**:
-> 	docker logs -f hackathon
+* **Exemplo**:
+  ```sh 
+  docker logs -f hackathon
+  ```
 
 - Rode as migrations:
 	```sh
@@ -123,14 +141,16 @@ Não se esqueça de verificar se o container subiu corretamente para isso usar o
 	yarn dev
 	```
 
-Nota: Por padrão a aplicação roda na porta **3000**, caso prefira outra porta adicione uma linha no **.env** passando **PORT**, exemplo: **PORT=3001**.
+> **Nota**: Por padrão a aplicação roda na porta **3000**, caso prefira outra porta adicione uma linha no **.env** passando **PORT**. 
+>
+> Exemplo: **PORT=3001**.
 
 Para as requisições que necessitam de permissão de administrador, certifique-se de rodar o comando:
   ```sh 
   yarn prisma db seed
   ```
 
-> O comando acima cria uma conta de administrador e adiciona a mesma ao seu DB.
+> **Nota**: O comando acima cria uma conta de administrador e adiciona a mesma ao seu DB.
 
 Para usar a conta de administrador nas requisições, faça o login usando os seguintes dados:
   ```json
