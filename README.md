@@ -16,6 +16,7 @@ Aplicação desenvolvida durante o Hackathon do <a href="https://digital.fcamara
 1. [Tecnologias](#tecnologias)
 1. [Requisitos](#requisitos)
 1. [Instalação](#instalação)
+1. [Requisições](#requisições)
 1. [Documentação](#documentação)
 1. [Como Contribuir](#como-contribuir)
 1. [Licença](#licença)
@@ -66,54 +67,51 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
    yarn
    ```
 
-1. Copie o arquivo **.env.example** remova a extensão **.example** e preencha as informações.
-  1. Caso Esteja usando Docker.
-  1. Caso não esteja usando Docker.
-
-1. Crie um arquivo **.env** na raiz do projeto e preencha as seguintes informações:
-   ```
+1. Copie o arquivo `.env.example` remova a extensão `.example` e preencha as seguintes informações:
+   ```sh
    JWT_PASS=
-   DATABASE_URL=
    ```
 
-- **JWT_PASS** - É responsável pela criptografia do token de autenticação, é recomendado o uso de uma senha forte de preferencia transforme essa senha em algo como um sha1 ou md5 ou melhor.  
-  ```
-  JWT_PASS=d19acb5a620f18edb2aa65a780c645d632e29df4
-  ```
-> **Nota**: O valor acima é apenas um exemplo.
+  - `JWT_PASS` - É responsável pela criptografia do token de autenticação, é recomendado o uso de uma senha forte de preferencia transforme essa senha em algo como um sha1 ou md5 ou melhor.  
+    
+    > **Nota**: O valor abaixo é apenas um exemplo.
+    ```
+    JWT_PASS=d19acb5a620f18edb2aa65a780c645d632e29df4
+    ```
+- Caso **não** esteja usando **Docker**:
 
-- **DATABASE_URL** - É responsável pela conexão com o banco de dados, a string tem o seguinte formato:
-  ```
-  "postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
-  ```
-> **Nota**: Preencha com os respectivos valores da sua conexão com o banco de dados.
+- ` DATABASE_URL=` - É responsável pela conexão com o banco de dados. 
+    
+    > **Nota**: O valor abaixo é apenas um exemplo.
+    ```
+    DATABASE_URL="postgres://usuario:senha@localhost/hackathon"
+    ```
+    > **Nota**: Como nesse exemplo não estamos utilizando o docker, não esqueça de comentar a linha que utiliza o docker, adicionando uma `#` ao inicio dela, dessa forma:
+    ```
+    #DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
+    ```
 
-* **Exemplo**:
-  ```
-  "postgres://usuario:senha@localhost/hackathon"
-  ```
-> **Nota**: O valor acima é apenas um exemplo.
+- Caso esteja usando **Docker**:
+    ```
+    DB_HOST=
+    DB_PORT=
+    DB_USER=
+    DB_PASS=
+    DB_NAME=
 
-- Caso prefira usar **Docker** para o banco de dados, preencha o **.env** da seguinte forma:
-   ```
-   DB_HOST=
-   DB_PORT=
-   DB_USER=
-   DB_PASS=
-   DB_NAME=
+    DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
+    ```
+    > **Nota**: O valor abaixo é apenas um exemplo.
+    ```
+    DB_HOST=localhost
+    DB_PORT=5432
+    DB_USER=usuario
+    DB_PASS=senha
+    DB_NAME=hackathon
 
-   DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
-   ```
-* **Exemplo**:
-  ```
-  DB_HOST=localhost
-  DB_PORT=5432
-  DB_USER=usuario
-  DB_PASS=senha
-  DB_NAME=hackathon
-
-  DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
-  ```
+    DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
+    ```
+    
 * Após alterar os campos que iniciam com **DB** para os valores desejados, rode o comando:
 	```sh
 	docker-compose up -d
@@ -129,15 +127,14 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
   ```
 * **Exemplo**:
   ```sh 
-  docker logs -f hackathon
+  docker logs -f backend_api
   ```
 
 - Rode as migrations para atualizar o DB:
 	```sh
 	npx prisma migrate dev
 	```
-
-> **Nota**: No caso do docker pule para o passo 6.
+  > **Nota**: Como estamos utilizando o docker, pule para o passo **6**.
 
 5. Crie a conexão com o DB:
 	```sh
@@ -145,23 +142,17 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
 	```
 
 6. Inicie a aplicação:
+    > **Nota**: Por padrão a aplicação roda na porta `3000`, caso queira altear adicionar ao `.env` o campo `PORT` com o valor desejado.
 	```sh
 	yarn dev
 	```
 
-> **Nota**: Por padrão a aplicação roda na porta **3000**, caso prefira outra porta adicione uma linha no **.env** passando o novo **PORT**. 
-
-  * **Exemplo**: 
+## Requisições
+Algumas requisições necessitam de permissão de administrador, para isso, certifique-se de rodar o comando:
+  > **Nota**: O comando abaixo cria uma conta de administrador e adiciona a mesma ao seu DB.
   ```
-  PORT=3001
-  ```
-
-Para as requisições que necessitam de permissão de administrador, certifique-se de rodar o comando:
-  ```sh 
   npx prisma db seed
   ```
-
-> **Nota**: O comando acima cria uma conta de administrador e adiciona a mesma ao seu DB.
 
 Para usar a conta de administrador nas requisições, faça o login usando os seguintes dados:
   ```json
