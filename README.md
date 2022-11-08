@@ -34,10 +34,9 @@ O objetivo desse projeto é criar o back-end da plataforma do [Orange Evolution]
 ## Prerequisites
 * [NodeJS](https://nodejs.org/en/): Version 16.16.0
 * [Yarn](https://classic.yarnpkg.com/lang/en/docs/install): Version 1.22.19
-<br>
-> Opcional:
-> [Docker](https://www.docker.com/): Version 20.10.17
->   [docker-compose](https://docs.docker.com/compose/)
+* Opcional:
+  - [Docker](https://www.docker.com/): Version 20.10.17
+    - [docker-compose](https://docs.docker.com/compose/)
 
 ## Installation
 Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#prerequisities), antes de iniciar a aplicação.
