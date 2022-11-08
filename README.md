@@ -114,12 +114,33 @@ Não se esqueça de verificar se o container subiu corretamente para isso usar o
 	yarn prisma migrate dev
 	```
 
-5. Inicie a aplicação:
+5. Crie a conexão com o DB:
+  ```sh
+  yarn prisma db push
+  ```
+
+6. Inicie a aplicação:
 	```sh
 	yarn dev
 	```
 
 Nota: Por padrão a aplicação roda na porta **3000**, caso prefira outra porta adicione uma linha no **.env** passando **PORT**, exemplo: **PORT=3001**.
+
+Para as requisições que necessitam de permissão de administrador, certifique-se de rodar o comando:
+  ```sh 
+  yarn prisma db seed
+  ```
+
+> O comando acima cria uma conta de administrador e adiciona a mesma ao seu DB.
+
+Para usar a conta de administrador nas requisições, faça o login usando os seguintes dados:
+  ```json
+  {
+    "email": "admin@squad2.com",
+    "password": "squad2admin"
+
+  }
+  ```
 
 ## Collaboration
 Para contribuir com o projeto, siga estas etapas:
