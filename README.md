@@ -117,7 +117,7 @@ Não se esqueça de verificar se o container subiu corretamente para isso usar o
 	yarn dev
 	```
 
-Nota: Por padrão a aplicação roda na porta **3000** caso prefira outra porta, adicione uma linha no **.env** passando **PORT**, exemplo: **PORT=3001**.
+Nota: Por padrão a aplicação roda na porta **3000**, caso prefira outra porta adicione uma linha no **.env** passando **PORT**, exemplo: **PORT=3001**.
 
 ## Collaboration
 Para contribuir com o projeto, siga estas etapas:
