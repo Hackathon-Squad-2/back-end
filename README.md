@@ -12,7 +12,6 @@ Aplicação foi desenvolvida durante o Hackathon do <a href="https://digital.fca
 </div>
 
 ## Table of Contents
----
 1. [General Info](#general-info)
 1. [Technologies](#technologies)
 1. [Prerequisites](#prerequisities)
@@ -20,12 +19,10 @@ Aplicação foi desenvolvida durante o Hackathon do <a href="https://digital.fca
 1. [Collaboration](#collaboration)
 1. [License](#license)
 
-### General info
----
+## General info
 O objetivo desse projeto é criar o back-end da plataforma do [Orange Evolution](https://digital.fcamara.com.br/orange-evolution) onde o front-end se encontra nesse [repositório](https://github.com/Hackathon-Squad-2/front-end), com o objetivo de que as pessoas possam ter acesso de forma mais organizada a trilhas disponibilizadas, e que possam visualizar melhor sua evolução conforme consomem os conteúdos.
 
-### Technologies
----
+## Technologies
 * [Express (NodeJS)](https://github.com/expressjs/express)
 * [TypeScrypt](https://github.com/Microsoft/TypeScript)
 * [Prisma](https://www.prisma.io/)
@@ -34,17 +31,15 @@ O objetivo desse projeto é criar o back-end da plataforma do [Orange Evolution]
 
 > **Tests**: [Jest](https://jestjs.io/docs/en/getting-started) [Supertest](https://github.com/visionmedia/supertest)
 
-### Prerequisites
----
+## Prerequisites
 * [NodeJS](https://nodejs.org/en/): Version 16.16.0
 * [Yarn](https://classic.yarnpkg.com/lang/en/docs/install): Version 1.22.19
 <br>
 * Opcional:
-	- [Docker](https://www.docker.com/): Version 20.10.17
-		- [docker-compose](https://docs.docker.com/compose/)
+	* [Docker](https://www.docker.com/): Version 20.10.17
+		* [docker-compose](https://docs.docker.com/compose/)
 
-### Installation
----
+## Installation
 Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#prerequisities), antes de iniciar a aplicação.
 
 <br>
@@ -122,8 +117,7 @@ Não se esqueça de verificar se o container subiu corretamente para isso usar o
 
 Nota: Por padrão a aplicação roda na porta **3000** caso prefira outra porta, adicione uma linha no **.env** passando **PORT**, exemplo: **PORT=3001**.
 
-### Collaboration
----
+## Collaboration
 Para contribuir com o projeto, siga estas etapas:
 
 1. Faça um **fork** deste repositório.
@@ -150,6 +144,5 @@ Como alternativa, consulte a documentação do GitHub em [como criar uma solicit
 ]
 </div>
 
-### License
----
+## License
 Esse projeto está sob licença **MIT**. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
