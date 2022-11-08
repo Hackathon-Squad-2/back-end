@@ -48,6 +48,8 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 
 > Essa documentação assume que você está usando **yarn**, caso prefira usar npm, pnpm e afins ajuste os comandos.
 
+**Nota**: A aplicação foi desenvolvida com yarn, por isso recomendamos fortemente o uso do mesmo, os scripts listados no package.json todos assumem que você está possui yarn instalado em sua maquina.
+
 <br>
 
 1. Clone o projeto:
