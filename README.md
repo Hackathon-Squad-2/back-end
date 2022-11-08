@@ -11,18 +11,18 @@ Aplicação desenvolvida durante o Hackathon do <a href="https://digital.fcamara
 </p>
 </div>
 
-## Table of Contents
-1. [General Info](#general-info)
-1. [Technologies](#technologies)
-1. [Prerequisites](#prerequisites)
-1. [Installation](#installation)
-1. [Collaboration](#collaboration)
-1. [License](#license)
+## Tabela de conteúdos
+1. [Informações Gerais](#informações-gerais)
+1. [Tecnologias](#tecnologias)
+1. [Requisitos](#requisitos)
+1. [Instalação](#instalação)
+1. [Como Contribuir](#como-contribuir)
+1. [Licença](#licença)
 
-## General info
+## Informações Gerais
 O objetivo desse projeto é criar o back-end da plataforma do [Orange Evolution](https://digital.fcamara.com.br/orange-evolution) onde o front-end se encontra nesse [repositório](https://github.com/Hackathon-Squad-2/front-end), com o objetivo de que as pessoas possam ter acesso de forma mais organizada a trilhas disponibilizadas, e que possam visualizar melhor sua evolução conforme consomem os conteúdos.
 
-## Technologies
+## Tecnologias
 * [Express (NodeJS)](https://github.com/expressjs/express)
 * [TypeScrypt](https://github.com/Microsoft/TypeScript)
 * [Prisma](https://www.prisma.io/)
@@ -31,7 +31,7 @@ O objetivo desse projeto é criar o back-end da plataforma do [Orange Evolution]
 
 > **Tests**: [Jest](https://jestjs.io/docs/en/getting-started) | [Supertest](https://github.com/visionmedia/supertest)
 
-## Prerequisites
+## Requisitos
 * [NodeJS](https://nodejs.org/en/): Version 16.16.0
 * [Yarn](https://classic.yarnpkg.com/lang/en/docs/install): Version 1.22.19
 
@@ -41,8 +41,8 @@ O objetivo desse projeto é criar o back-end da plataforma do [Orange Evolution]
   - [Docker](https://www.docker.com/): Version 20.10.17
   - [docker-compose](https://docs.docker.com/compose/)
 
-## Installation
-Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#prerequisites), antes de iniciar a aplicação.
+## Instalação
+Verifique que o seu sistema tenha as dependencias listadas em [Requisitos](#requisitos), antes de iniciar a aplicação.
 
 <br>
 
@@ -166,7 +166,7 @@ Para usar a conta de administrador nas requisições, faça o login usando os se
   }
   ```
 
-## Collaboration
+## Como Contribuir
 Para contribuir com o projeto, siga estas etapas:
 
 1. Faça um **fork** deste repositório.
@@ -193,5 +193,5 @@ Como alternativa, consulte a documentação do GitHub em [como criar uma solicit
 ]
 </div>
 
-## License
+## Licença
 Esse projeto está sob licença **MIT**. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
