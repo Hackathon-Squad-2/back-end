@@ -109,7 +109,7 @@ Verifique que o seu sistema tenha as dependencias listadas em [Requisitos](#requ
 
   DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
   ```
-* Após alterar os campos que iniciam com **DB** para os valores desejados:
+* Após alterar os campos que iniciam com **DB** para os valores desejados, rode o comando:
 	```sh
 	docker-compose up -d
 	```
@@ -167,7 +167,7 @@ Para usar a conta de administrador nas requisições, faça o login usando os se
   ```
 
 ## Documentação
-Apara acessar a documentação, após rodar a aplicão com `yarn dev` acesse: 
+Para acessar a documentação, após rodar a aplicão com `yarn dev` acesse: 
 ```
 http://localhost:3000/api/docs
 ```
