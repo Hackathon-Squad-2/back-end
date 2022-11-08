@@ -149,10 +149,10 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
 
 ## Requisições
 Algumas requisições necessitam de permissão de administrador, para isso, certifique-se de rodar o comando:
-  > **Nota**: O comando abaixo cria uma conta de administrador e adiciona a mesma ao seu DB.
   ```
   npx prisma db seed
   ```
+  > **Nota**: O comando acima cria uma conta de administrador e adiciona a mesma ao seu DB.
 
 Para usar a conta de administrador nas requisições, faça o login usando os seguintes dados:
   ```json
