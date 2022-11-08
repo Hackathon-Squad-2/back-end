@@ -143,7 +143,7 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 	yarn dev
 	```
 
-> **Nota**: Por padrão a aplicação roda na porta **3000**, caso prefira outra porta adicione uma linha no **.env** passando **PORT**. 
+> **Nota**: Por padrão a aplicação roda na porta **3000**, caso prefira outra porta adicione uma linha no **.env** passando o novo **PORT**. 
 
   * **Exemplo**: 
   ```
