@@ -108,7 +108,7 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 
   DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
   ```
-* Após alterar os campos que iniciam com **DB** para os valores desejados, e depois rode:
+* Após alterar os campos que iniciam com **DB** para os valores desejados:
 	```sh
 	docker-compose up -d
 	```
