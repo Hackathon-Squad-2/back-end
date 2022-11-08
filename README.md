@@ -79,6 +79,9 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
     JWT_PASS=d19acb5a620f18edb2aa65a780c645d632e29df4
     ```
 - Caso **não** esteja usando **Docker**:
+   ```sh
+   DATABASE_URL=
+   ```
 
 - ` DATABASE_URL=` - É responsável pela conexão com o banco de dados. 
     
