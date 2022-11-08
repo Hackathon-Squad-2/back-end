@@ -3,7 +3,7 @@ version: "3.9"
 services:
   database: 
     image: postgres
-    container_name: hackathon
+    container_name: backend_api 
     restart: always
     env_file: .env
     ports: 
