@@ -113,11 +113,10 @@ Não se esqueça de verificar se o container subiu corretamente para isso usar o
 	```sh
 	yarn prisma migrate dev
 	```
-
 5. Crie a conexão com o DB:
-  ```sh
-  yarn prisma db push
-  ```
+	```sh
+	yarn prisma db push
+	```
 
 6. Inicie a aplicação:
 	```sh
