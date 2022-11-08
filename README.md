@@ -126,10 +126,13 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
   docker logs -f hackathon
   ```
 
-- Rode as migrations:
+- Rode as migrations para atualizar o DB:
 	```sh
 	yarn prisma migrate dev
 	```
+
+> **Nota**: No caso do docker pule para o passo 6.
+
 5. Crie a conexão com o DB:
 	```sh
 	yarn prisma db push
