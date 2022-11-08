@@ -128,14 +128,14 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 
 - Rode as migrations para atualizar o DB:
 	```sh
-	yarn prisma migrate dev
+	npx prisma migrate dev
 	```
 
 > **Nota**: No caso do docker pule para o passo 6.
 
 5. Crie a conexão com o DB:
 	```sh
-	yarn prisma db push
+	npx prisma db push
 	```
 
 6. Inicie a aplicação:
@@ -152,7 +152,7 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 
 Para as requisições que necessitam de permissão de administrador, certifique-se de rodar o comando:
   ```sh 
-  yarn prisma db seed
+  npx prisma db seed
   ```
 
 > **Nota**: O comando acima cria uma conta de administrador e adiciona a mesma ao seu DB.
