@@ -16,6 +16,7 @@ Aplicação desenvolvida durante o Hackathon do <a href="https://digital.fcamara
 1. [Tecnologias](#tecnologias)
 1. [Requisitos](#requisitos)
 1. [Instalação](#instalação)
+1. [Documentação](#documentação)
 1. [Como Contribuir](#como-contribuir)
 1. [Licença](#licença)
 
@@ -162,9 +163,20 @@ Para usar a conta de administrador nas requisições, faça o login usando os se
   {
     "email": "admin@squad2.com",
     "password": "squad2admin"
-
   }
   ```
+
+## Documentação
+Apara acessar a documentação, após rodar a aplicão com `yarn dev` acesse: 
+```
+http://localhost:3000/api/docs
+```
+
+> **Nota**: O link acima considera que aplicação está rodando na porta padrão, caso tenha alterado mude na url.
+
+Para testar as rotas que precisam de autenticação, faça o login e adicone o token ao `Authorize`, o botão se encontra no canto superior direito logo acima da documentação das rotas. 
+
+> **Nota**: Em rotas que necessitam de permissão de administrador, faça o login com os dados fornecidos no tópico acima.
 
 ## Como Contribuir
 Para contribuir com o projeto, siga estas etapas:
