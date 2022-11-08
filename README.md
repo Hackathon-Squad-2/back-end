@@ -112,10 +112,12 @@ Verifique que o seu sistema tenha as dependencias listadas em [Prerequisites](#p
 	```sh
 	docker-compose up -d
 	```
-  * Não se esqueça de verificar se o container subiu corretamente.
+  
+* Não se esqueça de verificar se o container subiu corretamente.
   ```sh
-	docker ps
-	```
+  docker ps
+  ```
+  
   ```sh
   docker log -f <DB_NAME> 
   ```
