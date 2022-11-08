@@ -142,7 +142,7 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
 	```
 
 6. Inicie a aplicação:
-    > **Nota**: Por padrão a aplicação roda na porta `3000`, caso queira altear adicionar ao `.env` o campo `PORT` com o valor desejado.
+    > **Nota**: Por padrão a aplicação roda na porta `3000`, caso queira alterar isso adicione ao `.env` o campo `PORT` com o valor desejado.
 	```sh
 	yarn dev
 	```
