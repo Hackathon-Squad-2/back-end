@@ -16,7 +16,9 @@ export class DeleteContentUseCase {
       throw new AppError('Trail not found', 404);
     }
 
-    const content = await prisma.content.findFirst({ where: { trailId } });
+    const content = await prisma.content.findFirst({
+      where: { id: contentId, deletedAt: null },
+    });
 
     if (!content) {
       throw new AppError('Content not found', 404);
