@@ -205,4 +205,4 @@ Como alternativa, consulte a documentação do GitHub em [como criar uma solicit
 </div>
 
 ## Licença
-Esse projeto está sob licença **MIT**. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
+Esse projeto está sob licença **MIT**. Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
