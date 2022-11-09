@@ -27,16 +27,14 @@ export class EditContentUseCase {
       throw new AppError('Invalid contentId', 404);
     }
 
-    const editedContent = await prisma.content.update({
+    return await prisma.content.update({
       where: {
         id: contentId,
       },
       data: {
+        trailId: contentExists.trailId,
         ...content,
-        ...contentExists,
       },
     });
-
-    console.log(editedContent);
   }
 }
