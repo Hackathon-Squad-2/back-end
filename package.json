@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Hackathon-FCamara-Squad-2/back-end",
+  "description": "Hackathon-Squad-2/back-end",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
@@ -20,15 +20,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hackathon-FCamara-Squad-2/backend.git"
+    "url": "git+https://github.com/Hackathon-Squad-2/back-end.git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Hackathon-FCamara-Squad-2/backend/issues"
+    "url": "https://github.com/Hackathon-Squad-2/back-end/issues"
   },
-  "homepage": "https://github.com/Hackathon-FCamara-Squad-2/backend#readme",
+  "homepage": "https://github.com/Hackathon-Squad-2/back-end#readme",
   "dependencies": {
     "@prisma/client": "^4.5.0",
     "bcrypt": "^5.1.0",
