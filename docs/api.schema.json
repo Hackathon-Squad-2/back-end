@@ -1026,10 +1026,43 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Content"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+	                  "title": {
+                      "type": "string"
+                    },
+	                  "type": {
+                      "type": "string"
+                    },
+	                  "creator": {
+                      "type": "string"
+                    },
+	                  "duration": {
+                      "type": "integer"
+                    },
+	                  "url": {
+                      "type": "string"
+                    },
+	                  "trailId": {
+                      "type": "string"
+                    },
+	                  "createdAt": {
+                      "type": "string"
+                    },
+	                  "deletedAt": {
+                      "type": "string",
+                      "example": null
+                    }
+                  }
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "404": {
             "content": {
@@ -1038,7 +1071,8 @@
                   "type": "object",
                   "properties": {
                     "message": {
-                      "example": "Course not found"
+                      "type": "string",
+                      "example": "Trail not found"
                     }
                   }
                 }
@@ -1046,7 +1080,19 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/E401"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "No allowed"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/E500"
