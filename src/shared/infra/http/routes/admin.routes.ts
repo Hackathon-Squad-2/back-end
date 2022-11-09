@@ -13,6 +13,11 @@ import {
 import { DeleteTrailController } from '../../../../modules/admin/useCases/deleteTrail';
 
 import {
+  EditContentController,
+  editContentValidation,
+} from '../../../../modules/admin/useCases/editContent';
+
+import {
   EditTrailController,
   editTrailValidation,
 } from '../../../../modules/admin/useCases/editTrail';
@@ -27,6 +32,7 @@ const editTrailController = new EditTrailController();
 const deleteTrailController = new DeleteTrailController();
 
 const createContentController = new CreateContentController();
+const editContentController = new EditContentController();
 
 adminRoutes.post(
   '/trails',
@@ -57,4 +63,12 @@ adminRoutes.post(
   ensureAdmin,
   createContentValidation,
   createContentController.handle
+);
+
+adminRoutes.patch(
+  '/trails/:trailId/content/:contentId',
+  ensureAuthenticated,
+  ensureAdmin,
+  editContentValidation,
+  editContentController.handle
 );
