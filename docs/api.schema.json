@@ -1247,15 +1247,30 @@
             }
           },
           "404": {
+            "description": "Not found",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "example": "Course not found"
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Trail not found"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Content not found"
+                        }
+                      }
                     }
-                  }
+                  ]
                 }
               }
             }
