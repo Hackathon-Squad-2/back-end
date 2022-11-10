@@ -12,6 +12,8 @@ import {
   UnsignCourseController,
 } from '../../../../modules/users/useCases/unsignCourse';
 
+import { GetCoursesController } from '../../../../modules/users/useCases/getCourses';
+
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticate';
 
 export const usersRoutes = Router();
@@ -20,7 +22,15 @@ const userProfileController = new UserProfileController();
 const signCoursesController = new SignCoursesController();
 const unsignCouseController = new UnsignCourseController();
 
+const getCoursesController = new GetCoursesController();
+
 usersRoutes.get('/me', ensureAuthenticated, userProfileController.handle);
+
+usersRoutes.get(
+  '/me/courses',
+  ensureAuthenticated,
+  getCoursesController.handle
+);
 
 usersRoutes.post(
   '/courses/sign',
