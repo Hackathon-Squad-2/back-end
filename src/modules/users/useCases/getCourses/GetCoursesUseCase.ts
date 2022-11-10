@@ -28,7 +28,13 @@ export class GetCoursesUseCase {
         creator: true,
         duration: true,
         content: {
-          include: {
+          select: {
+            id: true,
+            title: true,
+            type: true,
+            creator: true,
+            duration: true,
+            url: true,
             progress: true,
           },
         },
