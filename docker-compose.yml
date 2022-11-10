@@ -1,19 +1,67 @@
 version: "3.9"
 
 services:
-  database: 
-    image: postgres
-    container_name: backend_api 
+  database:
+    image: postgres:14.1-alpine
+    container_name: backend_api
     restart: always
-    env_file: .env
-    ports: 
+    env_file:
+      - .env
+    ports:
       - ${DB_PORT}:${DB_PORT}
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_DB=${DB_NAME}
     volumes:
-      - pgdata:/data/postgres
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    container_name: hackathon
+    build:
+      context: .
+    restart: always
+    env_file: .env
+    command: yarn dev
+    ports:
+      - 3000:3000
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - database
+
+  migration:
+    container_name: migrations
+    build:
+      context: .
+    command:
+      [
+        "./wait-for-it.sh",
+        "database:$DB_PORT",
+        "--",
+        "npx",
+        "prisma",
+        "migrate",
+        "dev"
+      ]
+    links:
+      - database
+    depends_on:
+      - database
+    env_file: .env
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
 
 volumes:
   pgdata:
