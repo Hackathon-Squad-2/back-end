@@ -13,7 +13,7 @@ import {
 } from '../../../../modules/users/useCases/unsignCourse';
 
 import { GetCoursesController } from '../../../../modules/users/useCases/getCourses';
-import { GetCourseController } from '../../../../modules/users/useCases/getCourse';
+import { GetCourseTrailController } from '../../../../modules/users/useCases/getCourseTrail';
 
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticate';
 
@@ -24,7 +24,7 @@ const signCoursesController = new SignCoursesController();
 const unsignCouseController = new UnsignCourseController();
 
 const getCoursesController = new GetCoursesController();
-const getCourseController = new GetCourseController();
+const getCourseTrailController = new GetCourseTrailController();
 
 usersRoutes.get('/me', ensureAuthenticated, userProfileController.handle);
 
@@ -37,7 +37,7 @@ usersRoutes.get(
 usersRoutes.get(
   '/me/courses/:trailId',
   ensureAuthenticated,
-  getCourseController.handle
+  getCourseTrailController.handle
 );
 
 usersRoutes.post(
