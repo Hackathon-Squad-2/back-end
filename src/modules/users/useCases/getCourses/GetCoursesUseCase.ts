@@ -19,6 +19,7 @@ export class GetCoursesUseCase {
         id: {
           in: courses.map((c) => c.trailId),
         },
+        deletedAt: null,
       },
       select: {
         id: true,
@@ -35,7 +36,11 @@ export class GetCoursesUseCase {
             creator: true,
             duration: true,
             url: true,
-            progress: true,
+            progress: {
+              select: {
+                status: true,
+              },
+            },
           },
         },
       },
