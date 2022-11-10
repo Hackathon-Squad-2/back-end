@@ -226,10 +226,49 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+		                "banner": {
+                      "type": "string"
+                    },
+		                "description": {
+                      "type": "string"
+                    },
+		                "creator": {
+                      "type": "string"
+                    },
+		                "duration": {
+                      "type": "integer"
+                    },
+                    "content": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/definitions/Trail"
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+				                  "title": {
+                            "type": "string"
+                          },
+				                  "type": { 
+                            "type": "string"
+                          },
+				                  "creator": {
+                            "type": "string"
+                          },
+				                  "duration": {
+                            "type": "integer"
+                          },
+				                  "url": {
+                            "type": "string"
+                          },
+				                  "progress": []
+                        }
                       }
                     }
                   }
