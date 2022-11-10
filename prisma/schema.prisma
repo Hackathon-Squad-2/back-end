@@ -48,13 +48,13 @@ enum ContentType {
 }
 
 enum Status {
-  started
+  available
   going
   finished
 }
 
 model Progress {
-  status Status
+  status Status @default(available)
 
   userId    String
   contentId String
@@ -79,6 +79,7 @@ model Content {
   trail   Trail  @relation(fields: [trailId], references: [id])
 
   createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
   deletedAt DateTime?
 }
 
@@ -94,5 +95,6 @@ model Trail {
   content Content[]
 
   createdAt DateTime  @default(now())
-  deletedAt DateTime? 
+  updatedAt DateTime  @default(now())
+  deletedAt DateTime?
 }
