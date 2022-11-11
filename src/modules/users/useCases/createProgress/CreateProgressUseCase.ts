@@ -25,11 +25,19 @@ export class CreateProgressUseCase {
       throw new AppError('Content not found', 404);
     }
 
-    return await prisma.progress.create({
-      data: {
-        userId,
-        contentId,
-      },
+    const progress = await prisma.progress.findFirst({
+      where: { userId, contentId },
     });
+
+    if (!progress) {
+      return await prisma.progress.create({
+        data: {
+          userId,
+          contentId,
+        },
+      });
+    }
+
+    return progress;
   }
 }
