@@ -7,7 +7,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "eslint-config-prettier"
   ],
   "overrides": [
   ],
@@ -18,10 +18,32 @@
     "project": ["./tsconfig.json"]
   },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "eslint-plugin-prettier"
   ],
   "rules": {
     "object-curly-spacing": ["error", "always"],
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }],
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "es5",
+        "bracketSpacing": true,
+        "arrowParens": "always"
+      }
+    ],
+    "max-len": [
+      "error", 
+      { 
+        "code": 105,
+        "tabWidth": 2,
+        "ignoreComments": true
+      }
+    ],
     "indent": [
       "error",
       2

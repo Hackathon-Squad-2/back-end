@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  database: 
+    image: postgres
+    container_name: backend_api 
+    restart: always
+    env_file: .env
+    ports: 
+      - ${DB_PORT}:${DB_PORT}
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local
