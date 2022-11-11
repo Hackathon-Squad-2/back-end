@@ -33,8 +33,13 @@ export class GetTrailProgressUseCase {
       },
     });
 
+    const percentage =
+      (progress.filter((p) => p.status === 'finished').length /
+        progress.length) *
+      100;
+
     return {
-      progress: progress.filter((p) => p.status === 'finished').length,
+      progress: percentage,
     };
   }
 }
