@@ -717,8 +717,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "progress": {
-                      "type": "integer"
+                    "status": {
+                      "type": "string",
+                      "example": "available"
+                    },
+	                  "userId": {
+                      "type": "string"
+                    },
+	                  "contentId": {
+                      "type": "string"
                     }
                   }
                 }
