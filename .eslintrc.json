@@ -39,7 +39,7 @@
     "max-len": [
       "error", 
       { 
-        "code": 95,
+        "code": 100,
         "tabWidth": 2,
         "ignoreComments": true
       }
