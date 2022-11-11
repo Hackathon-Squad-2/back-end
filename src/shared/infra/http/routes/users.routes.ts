@@ -15,6 +15,8 @@ import {
 import { GetCoursesController } from '../../../../modules/users/useCases/getCourses';
 import { GetCourseTrailController } from '../../../../modules/users/useCases/getCourseTrail';
 
+import { CreateProgressController } from '../../../../modules/users/useCases/createProgress';
+
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticate';
 
 export const usersRoutes = Router();
@@ -25,6 +27,8 @@ const unsignCouseController = new UnsignCourseController();
 
 const getCoursesController = new GetCoursesController();
 const getCourseTrailController = new GetCourseTrailController();
+
+const createProgressController = new CreateProgressController();
 
 usersRoutes.get('/me', ensureAuthenticated, userProfileController.handle);
 
@@ -38,6 +42,12 @@ usersRoutes.get(
   '/me/courses/:trailId',
   ensureAuthenticated,
   getCourseTrailController.handle
+);
+
+usersRoutes.post(
+  '/me/courses/:trailId/progress/:contentId',
+  ensureAuthenticated,
+  createProgressController.handle
 );
 
 usersRoutes.post(
