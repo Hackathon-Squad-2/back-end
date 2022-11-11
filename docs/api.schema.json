@@ -224,55 +224,58 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-		                "banner": {
-                      "type": "string"
-                    },
-		                "description": {
-                      "type": "string"
-                    },
-		                "creator": {
-                      "type": "string"
-                    },
-		                "duration": {
-                      "type": "integer"
-                    },
-                    "content": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-				                  "title": {
-                            "type": "string"
-                          },
-				                  "type": { 
-                            "type": "string"
-                          },
-				                  "creator": {
-                            "type": "string"
-                          },
-				                  "duration": {
-                            "type": "integer"
-                          },
-				                  "url": {
-                            "type": "string"
-                          },
-				                  "progress": {
-                            "type": "object",
-                            "properties": {
-                              "status": {
-                                "type": "string",
-                                "example": "available"
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "banner": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "creator": {
+                        "type": "string"
+                      },
+                      "duration": {
+                        "type": "integer"
+                      },
+                      "content": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "type": { 
+                              "type": "string"
+                            },
+                            "creator": {
+                              "type": "string"
+                            },
+                            "duration": {
+                              "type": "integer"
+                            },
+                            "url": {
+                              "type": "string"
+                            },
+                            "progress": {
+                              "type": "object",
+                              "properties": {
+                                "status": {
+                                  "type": "string",
+                                  "example": "available"
+                                }
                               }
                             }
                           }
@@ -566,13 +569,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Token missing"
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Token missing"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid token"
+                        }
+                      }
                     }
-                  }
+                  ]
                 }
               }
             }
@@ -896,7 +912,8 @@
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": ["started", "going", "finished"]
+                    "enum": ["available", "going", "finished"],
+                    "example": "finished"
                   }
                 }
               }
@@ -905,21 +922,80 @@
         },
         "responses": {
           "200": {
-            "description": "Success" 
-          },
-          "401": {
-            "$ref": "#/components/responses/E401"
-          },
-          "404": {
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": {
-                      "example": "Course not found"
+                    "status": {
+                      "type": "string"
+                    },
+	                  "userId": {
+                      "type": "string"
+                    },
+	                  "contentId": {
+                      "type": "string"
                     }
                   }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Token missing"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid token"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Trail not found"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Content not found"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
