@@ -267,7 +267,15 @@
 				                  "url": {
                             "type": "string"
                           },
-				                  "progress": []
+				                  "progress": {
+                            "type": "object",
+                            "properties": {
+                              "status": {
+                                "type": "string",
+                                "example": "available"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -276,8 +284,50 @@
               }
             }
           },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "No courses found"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401": {
-            "$ref": "#/components/responses/E401"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Token missing"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid token"
+                        }
+                      }
+                    }
+                  ]
+                }
+              } 
+            }
           },
           "500": {
             "$ref": "#/components/responses/E500"
@@ -332,8 +382,14 @@
 		                  "url": {
                         "type": "string"
                       },
-		                  "progress": {
-                        "type": "string"
+				              "progress": {
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "string",
+                            "example": "available"
+                          }
+                        }
                       }
                     }
                   }
