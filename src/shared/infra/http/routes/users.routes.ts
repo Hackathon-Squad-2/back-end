@@ -15,9 +15,9 @@ import {
 import { GetCoursesController } from '../../../../modules/users/useCases/getCourses';
 import { GetCourseTrailController } from '../../../../modules/users/useCases/getCourseTrail';
 
-import { CreateProgressController } from '../../../../modules/users/useCases/createProgress';
-
 import { GetTrailProgressController } from '../../../../modules/users/useCases/getTrailProgress';
+import { GetContentProgressController } from '../../../../modules/users/useCases/getContentProgress';
+import { CreateProgressController } from '../../../../modules/users/useCases/createProgress';
 
 import {
   UpdateProgressController,
@@ -36,6 +36,7 @@ const getCoursesController = new GetCoursesController();
 const getCourseTrailController = new GetCourseTrailController();
 
 const getTrailProgressController = new GetTrailProgressController();
+const getContentProgressController = new GetContentProgressController();
 const createProgressController = new CreateProgressController();
 const updateProgressController = new UpdateProgressController();
 
@@ -57,6 +58,12 @@ usersRoutes.get(
   '/me/courses/:trailId/progress',
   ensureAuthenticated,
   getTrailProgressController.handle
+);
+
+usersRoutes.get(
+  '/me/courses/:trailId/progress/:contentId',
+  ensureAuthenticated,
+  getContentProgressController.handle
 );
 
 usersRoutes.post(
