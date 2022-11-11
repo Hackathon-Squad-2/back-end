@@ -310,13 +310,65 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/Trail"
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+		                  "title": {
+                        "type": "string"
+                      },
+		                  "type": {
+                        "type": "string"
+                      },
+		                  "creator": {
+                        "type": "string"
+                      },
+		                  "duration": {
+                        "type": "integer"
+                      },
+		                  "url": {
+                        "type": "string"
+                      },
+		                  "progress": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               }
             }
           },
           "401": {
-            "$ref": "#/components/responses/E401"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Token missing"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid token"
+                        }
+                      }
+                    }
+                  ]
+                }
+              } 
+            }
           },
           "404": {
             "content": {
@@ -325,7 +377,7 @@
                   "type": "object",
                   "properties": {
                     "message": {
-                      "example": "Course not found"
+                      "example": "Trail not found"
                     }
                   }
                 }
