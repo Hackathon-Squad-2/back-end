@@ -16,7 +16,6 @@ Aplicação desenvolvida durante o Hackathon do <a href="https://digital.fcamara
 1. [Tecnologias](#tecnologias)
 1. [Requisitos](#requisitos)
 1. [Instalação](#instalação)
-1. [Requisições](#requisições)
 1. [Documentação](#documentação)
 1. [Como Contribuir](#como-contribuir)
 1. [Licença](#licença)
@@ -78,10 +77,19 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
     ```
     JWT_PASS=d19acb5a620f18edb2aa65a780c645d632e29df4
     ```
-- Caso **não** esteja usando **Docker**:
+5. Configurando DB:
+- Caso já possua um DB configurado, preencha os campos abaixo com as informações do seu DB:
    ```sh
-   DATABASE_URL=
+   DB_HOST=
+   DB_PORT=
+   DB_USER=
+   DB_PASS=
+   DB_NAME=
    ```
+ - Outra opção seria apenas adicionar a url da conexão com o banco de dados, preenchendo o campo:
+    ```sh
+    DATABASE_URL= 
+    ```
 
 - ` DATABASE_URL=` - É responsável pela conexão com o banco de dados. 
     
@@ -94,7 +102,10 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
     #DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
     ```
 
-- Caso esteja usando **Docker**:
+- Usando o **Docker**:
+   > **Nota**: Os passos a seguir seguir são para configurar um DB usando o docker.
+  
+   Preencha as informações abaixo dentro do `.env` para criar o DB:   
     ```
     DB_HOST=
     DB_PORT=
@@ -114,6 +125,7 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
 
     DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
     ```
+     > **Nota**: Para desenvolvimento os valores aprensentados nos exemplos são mais do que suficientes.
     
 * Após alterar os campos que iniciam com **DB** para os valores desejados, rode o comando:
 	```sh
@@ -132,38 +144,30 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
   ```sh 
   docker logs -f backend_api
   ```
-
-- Rode as migrations para atualizar o DB:
-	```sh
-	npx prisma migrate dev
-	```
-  > **Nota**: Como estamos utilizando o docker, pule para o passo **6**.
-
-5. Crie a conexão com o DB:
+  
+6. Atualizando o DB (migrations):
 	```sh
 	npx prisma db push
 	```
-
-6. Inicie a aplicação:
-    > **Nota**: Por padrão a aplicação roda na porta `3000`, caso queira alterar isso adicione ao `.env` o campo `PORT` com o valor desejado.
-	```sh
-	yarn dev
-	```
-
-## Requisições
-Algumas requisições necessitam de permissão de administrador, para isso, certifique-se de rodar o comando:
-  ```
-  npx prisma db seed
-  ```
-  > **Nota**: O comando acima cria uma conta de administrador e adiciona a mesma ao seu DB.
-
-Para usar a conta de administrador nas requisições, faça o login usando os seguintes dados:
+   > **Nota**: Caso o seu banco de dados por algum motivo não suporte migrations, rode o seguinte comando: `npx prisma db push`.
+  
+* (Opcional) - Rode o comando de seed para ter um acesso de administrador:
+  ```sh
+  npx prisma db seed 
+  ``` 
+  Para usar a conta de administrador nas requisições, faça o login usando os seguintes dados:
   ```json
   {
     "email": "admin@squad2.com",
     "password": "squad2admin"
   }
   ```
+
+7. Inicie a aplicação:
+	```sh
+	yarn dev
+	```
+    > **Nota**: Por padrão a aplicação roda na porta `3000`, caso queira alterar isso adicione ao `.env` o campo `PORT` com o valor desejado.
 
 ## Documentação
 Para acessar a documentação, após rodar a aplicão com `yarn dev` acesse: 
@@ -173,9 +177,30 @@ http://localhost:3000/api/docs
 
 > **Nota**: O link acima considera que aplicação está rodando na porta padrão, caso tenha alterado mude na url.
 
-Para testar as rotas que precisam de autenticação, faça o login e adicione o token ao `Authorize`, o botão se encontra no canto superior direito logo acima da documentação das rotas. 
+A maioria das rotas na aplicação necessitam de autenticação por parte do usuário, então recomendamos fortemente que a primeira rota a ser usada seja a de register:
 
-> **Nota**: Em rotas que necessitam de permissão de administrador, faça o login com os dados fornecidos no tópico acima.
+* `/api/users/auth/register` - Para criar um novo usuário, você pode enviar os seguintes dados:
+  
+  ```json
+  {
+    "name": "user",
+    "email": "user@mail.com",
+    "password": "12345"
+  }
+  ```
+  Após o register não esqueça de fazer o login, para conseguir o token para autenticação.
+  
+* `/api/users/auth/login` - Para fazer o login, envie os seguintes dados:
+    ```json
+    {
+      "email": "user@mail.com",
+      "password": "12345"
+    }
+    ``` 
+
+Para testar essas rotas que precisam de autenticação, faça o login e adicione o token ao `Authorize`, o botão se encontra no canto superior direito logo acima da documentação das rotas. 
+
+> **Nota**: Em rotas que necessitam de permissão de administrador, não se esqueça de rodar o comando de `seed`, e faça o login com os dados fornecidos no passo (opcional) na parte de [Instalação](#instalação).
 
 ## Como Contribuir
 Para contribuir com o projeto, siga estas etapas:
