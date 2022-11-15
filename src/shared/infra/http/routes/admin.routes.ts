@@ -26,6 +26,7 @@ import {
   EditTrailController,
   editTrailValidation,
 } from '../../../../modules/admin/useCases/editTrail';
+import { GetTrailsController } from '../../../../modules/admin/useCases/getTrails';
 
 import { ensureAdmin } from '../middlewares/ensureAdmin';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticate';
@@ -39,6 +40,15 @@ const deleteTrailController = new DeleteTrailController();
 const createContentController = new CreateContentController();
 const editContentController = new EditContentController();
 const deleteContentController = new DeleteContentController();
+
+const getTrailsController = new GetTrailsController();
+
+adminRoutes.get(
+  '/trails',
+  ensureAuthenticated,
+  ensureAdmin,
+  getTrailsController.handle
+);
 
 adminRoutes.post(
   '/trails',

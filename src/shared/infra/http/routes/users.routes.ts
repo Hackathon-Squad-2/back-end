@@ -25,6 +25,7 @@ import {
 } from '../../../../modules/users/useCases/updateProgress';
 
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticate';
+import { GetTrailInfoController } from '../../../../modules/users/useCases/getTrailInfo';
 
 export const usersRoutes = Router();
 
@@ -40,7 +41,15 @@ const getContentProgressController = new GetContentProgressController();
 const createProgressController = new CreateProgressController();
 const updateProgressController = new UpdateProgressController();
 
+const getTrailInfoController = new GetTrailInfoController();
+
 usersRoutes.get('/me', ensureAuthenticated, userProfileController.handle);
+
+usersRoutes.get(
+  '/me/courses/:trailId/info',
+  ensureAuthenticated,
+  getTrailInfoController.handle
+);
 
 usersRoutes.get(
   '/me/courses',

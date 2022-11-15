@@ -7,9 +7,8 @@ export class GetTrailsUseCase {
       select: {
         id: true,
         title: true,
-        description: true,
         creator: true,
-        duration: true,
+        createdAt: true,
       },
     });
   }

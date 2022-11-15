@@ -1,7 +1,7 @@
 import { prisma } from '../../../../database';
 import { AppError } from '../../../../shared/errors/AppError';
 
-export class GetCourseTrailUseCase {
+export class GetTrailContentsUseCase {
   async execute(trailId: string) {
     const trail = await prisma.trail.findFirst({
       where: { id: trailId, deletedAt: null },
@@ -11,18 +11,19 @@ export class GetCourseTrailUseCase {
       throw new AppError('Trail not found', 404);
     }
 
-    return await prisma.content.findMany({
-      where: {
-        trailId,
-        deletedAt: null,
-      },
+    return await prisma.trail.findFirst({
+      where: { id: trailId, deletedAt: null },
       select: {
-        id: true,
         title: true,
-        type: true,
-        creator: true,
-        duration: true,
-        url: true,
+        description: true,
+        content: {
+          select: {
+            id: true,
+            title: true,
+            type: true,
+            creator: true,
+          },
+        },
       },
     });
   }
