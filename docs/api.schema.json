@@ -401,15 +401,6 @@
                       },
                       "url": {
                         "type": "string"
-                      },
-                      "progress": {
-                        "type": "object",
-                        "properties": {
-                          "status": {
-                            "type": "string",
-                            "example": "available"
-                          }
-                        }
                       }
                     }
                   }
@@ -509,13 +500,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Token missing"
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Token missing"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid token"
+                        }
+                      }
                     }
-                  }
+                  ]
                 }
               }
             }
@@ -1004,6 +1008,49 @@
                 }
               }
             }
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          }
+        }
+      }
+    },
+    "/api/trails": {
+      "get": {
+        "tags": ["trails"],
+        "summary": "Gets all available trails",
+        "description": "Get all available trails without sensitive information",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "creator": {
+                        "type": "string"
+                      },
+                      "duration": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
           },
           "500": {
             "$ref": "#/components/responses/E500"
