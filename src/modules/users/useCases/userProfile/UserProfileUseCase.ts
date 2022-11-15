@@ -23,15 +23,6 @@ export class UserProfileUseCase {
       select: {
         id: true,
         title: true,
-        content: {
-          select: {
-            progress: {
-              select: {
-                status: true,
-              },
-            },
-          },
-        },
       },
     });
   }

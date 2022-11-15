@@ -1,5 +1,5 @@
 {
-"openapi": "3.0.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "Orange Evolution - Hackathon Squad 2",
     "description": "Documentação da API desenvolvida durante o Hackathon da FCamara pelo Squad 2",
@@ -29,7 +29,6 @@
                   "password": {
                     "type": "string"
                   }
-
                 },
                 "example": {
                   "name": "user",
@@ -48,7 +47,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": { 
+                    "id": {
                       "type": "string"
                     },
                     "name": {
@@ -174,16 +173,25 @@
         "tags": ["profile"],
         "summary": "Sees a user profile",
         "description": "Returns an object that contain all the information about an user",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/definitions/User"
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -193,13 +201,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Token missing"
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Token missing"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid token"
+                        }
+                      }
                     }
-                  }
+                  ]
                 }
               }
             }
@@ -215,9 +236,7 @@
         "tags": ["courses"],
         "summary": "See all user courses",
         "description": "Return an list contain the user's courses information",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
             "description": "Courses information",
@@ -257,7 +276,7 @@
                             "title": {
                               "type": "string"
                             },
-                            "type": { 
+                            "type": {
                               "type": "string"
                             },
                             "creator": {
@@ -329,7 +348,7 @@
                     }
                   ]
                 }
-              } 
+              }
             }
           },
           "500": {
@@ -343,9 +362,7 @@
         "tags": ["courses"],
         "summary": "See an user courses",
         "description": "Return an list contain an user courses information",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -370,22 +387,22 @@
                       "id": {
                         "type": "string"
                       },
-		                  "title": {
+                      "title": {
                         "type": "string"
                       },
-		                  "type": {
+                      "type": {
                         "type": "string"
                       },
-		                  "creator": {
+                      "creator": {
                         "type": "string"
                       },
-		                  "duration": {
+                      "duration": {
                         "type": "integer"
                       },
-		                  "url": {
+                      "url": {
                         "type": "string"
                       },
-				              "progress": {
+                      "progress": {
                         "type": "object",
                         "properties": {
                           "status": {
@@ -426,7 +443,7 @@
                     }
                   ]
                 }
-              } 
+              }
             }
           },
           "404": {
@@ -454,9 +471,7 @@
         "tags": ["courses"],
         "summary": "Register courses to an user",
         "description": "Create an relation with trails ids and an user",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -530,9 +545,7 @@
         "tags": ["courses"],
         "summary": "Remove a course from an user",
         "description": "Remove the relation between and trail id and a user",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -618,9 +631,7 @@
         "tags": ["progress"],
         "summary": "Get an user progress for a certain trail id",
         "description": "Return the user progress for a certain trail id as a percent number",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -702,9 +713,7 @@
         "tags": ["progress"],
         "summary": "Get an user progress for a certain trail and its content",
         "description": "Return the user progress for a certain trail given an content id as a percent number",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -768,9 +777,7 @@
         "tags": ["progress"],
         "summary": "Add user progress for a certain trail and its content",
         "description": "Return the user progress for a certain trail given an content id as a percent number",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -803,10 +810,10 @@
                       "type": "string",
                       "example": "available"
                     },
-	                  "userId": {
+                    "userId": {
                       "type": "string"
                     },
-	                  "contentId": {
+                    "contentId": {
                       "type": "string"
                     }
                   }
@@ -881,9 +888,7 @@
         "tags": ["progress"],
         "summary": "Updates the user progress",
         "description": "Updates the user progress on a certain content of an trail",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -931,10 +936,10 @@
                     "status": {
                       "type": "string"
                     },
-	                  "userId": {
+                    "userId": {
                       "type": "string"
                     },
-	                  "contentId": {
+                    "contentId": {
                       "type": "string"
                     }
                   }
@@ -1128,9 +1133,7 @@
         "tags": ["admin"],
         "summary": "Create a trail",
         "description": "Allow the admin to create a new trail",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1194,9 +1197,7 @@
         "tags": ["admin"],
         "summary": "Edit trail",
         "description": "Allow the admin to edit a trail content",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -1285,9 +1286,7 @@
         "tags": ["admin"],
         "summary": "Delete a trail",
         "description": "Allow the admin to delete a train content",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -1360,9 +1359,7 @@
         "tags": ["admin"],
         "summary": "Add a content to a trail",
         "description": "Allow the admin to add a content to a trail by id",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -1394,28 +1391,28 @@
                     "id": {
                       "type": "string"
                     },
-	                  "title": {
+                    "title": {
                       "type": "string"
                     },
-	                  "type": {
+                    "type": {
                       "type": "string"
                     },
-	                  "creator": {
+                    "creator": {
                       "type": "string"
                     },
-	                  "duration": {
+                    "duration": {
                       "type": "integer"
                     },
-	                  "url": {
+                    "url": {
                       "type": "string"
                     },
-	                  "trailId": {
+                    "trailId": {
                       "type": "string"
                     },
-	                  "createdAt": {
+                    "createdAt": {
                       "type": "string"
                     },
-	                  "deletedAt": {
+                    "deletedAt": {
                       "type": "string",
                       "example": null
                     }
@@ -1468,9 +1465,7 @@
         "tags": ["admin"],
         "summary": "Sees the content of a trail",
         "description": "Returns a certain content by id from a certain trail by id",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -1567,9 +1562,7 @@
         "tags": ["admin"],
         "summary": "Delete a content from a trail",
         "description": "Remove a content by id from a certain trail by id",
-        "security": [
-          { "bearerAuth": [] }
-        ],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "trailId",
@@ -1659,17 +1652,17 @@
         "type": {
           "type": "string",
           "enum": [
-            "artigo", 
-            "apostila", 
-            "curso", 
+            "artigo",
+            "apostila",
+            "curso",
             "desafio",
-            "ferramenta", 
-            "glossário", 
-            "live", 
-            "livro", 
+            "ferramenta",
+            "glossário",
+            "live",
+            "livro",
             "podcast",
-            "playlist", 
-            "video" 
+            "playlist",
+            "video"
           ]
         },
         "creator": {
@@ -1689,17 +1682,17 @@
         "type": {
           "type": "string",
           "enum": [
-            "artigo", 
-            "apostila", 
-            "curso", 
+            "artigo",
+            "apostila",
+            "curso",
             "desafio",
-            "ferramenta", 
-            "glossário", 
-            "live", 
-            "livro", 
+            "ferramenta",
+            "glossário",
+            "live",
+            "livro",
             "podcast",
-            "playlist", 
-            "video" 
+            "playlist",
+            "video"
           ]
         },
         "creator": {
@@ -1841,4 +1834,3 @@
     }
   }
 }
-
