@@ -32,6 +32,7 @@ export class LoginUserUseCase {
       user: {
         name: user.name,
         email: user.email,
+        isAdmin: user.isAdmin,
       },
       token,
     };
