@@ -23,11 +23,6 @@ export class GetCourseTrailUseCase {
         creator: true,
         duration: true,
         url: true,
-        progress: {
-          select: {
-            status: true,
-          },
-        },
       },
     });
   }
