@@ -143,7 +143,7 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
   DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}"
   ```
 
-  > **Nota**: Para desenvolvimento os valores aprensentados nos exemplos são mais do que suficientes.
+  > **Nota**: Para desenvolvimento os valores apresentados nos exemplos são mais do que suficientes.
 
 * Após alterar os campos que iniciam com **DB** para os valores desejados, rode o comando:
   ```sh
@@ -190,7 +190,7 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
 
 ## Documentação
 
-Para acessar a documentação, após rodar a aplicão com `yarn dev` acesse:
+Para acessar a documentação, após rodar a aplicação com `yarn dev` acesse:
 
 ```
 http://localhost:3000/api/docs
@@ -236,7 +236,7 @@ Para contribuir com o projeto, siga estas etapas:
 
 Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
-> Neste projeto nos seguidos o padrão de **git flow** e usamos commits semanticos, caso tenha duvidas sobre esses tópicos leia os links abaixo.
+> Neste projeto nos seguidos o padrão de **git flow** e usamos commits semânticos, caso tenha duvidas sobre esses tópicos leia os links abaixo.
 
 <br>
 
@@ -247,7 +247,7 @@ Como alternativa, consulte a documentação do GitHub em [como criar uma solicit
 </span>
 |
 <span>
-<a href="https://sparkbox.com/foundry/semantic_commit_messages">Commit Semantico</a>
+<a href="https://sparkbox.com/foundry/semantic_commit_messages">Commit Semânticos</a>
 </span>
 ]
 </div>
