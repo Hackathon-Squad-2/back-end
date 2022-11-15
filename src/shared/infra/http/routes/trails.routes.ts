@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { GetTrailContentsController } from '../../../../modules/trails/useCases/getTrailContents';
 
+import { GetTrailContentsController } from '../../../../modules/trails/useCases/getTrailContents';
 import { GetTrailsController } from '../../../../modules/trails/useCases/getTrails';
 
 export const trailsRoutes = Router();
