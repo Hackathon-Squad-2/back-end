@@ -101,6 +101,8 @@ Verifique que o seu sistema tenha as dependências listadas em [Requisitos](#req
   DATABASE_URL=
   ```
 
+- Caso prefira rodar a aplicação com valores de exemplo, use a DATABASE_URL que se encontra em baixo do comentário `# Elephantsql` na `linha 8`. Caso prefira essa abordagem nenhuma das configurações abaixo são necessárias, portanto pule para o passo **7**.
+
 - ` DATABASE_URL=` - É responsável pela conexão com o banco de dados.
 
   > **Nota**: O valor abaixo é apenas um exemplo.
